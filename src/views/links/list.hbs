@@ -1,0 +1,41 @@
+<div class="container pt-4">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2 class="title">Lista de servicios agregados</h2>
+				</div>
+			</div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Servicio</th>
+						<th>Precio</th>
+						<th>Descripcion</th>
+						<th>Accion</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each links}}
+						<tr>
+							<td>{{id}}</td>
+							<td>{{serviceName}}</td>
+							<td>{{price}}</td>
+							<td>{{description}}</td>
+							<td>
+								<a href="/links/edit/{{id}}" class="btn btn-primary">Editar</a>
+								<a href="/links/deletes/{{id}}" class="btn btn-danger" >Eliminar</a>
+							</td>
+						</tr>
+					{{else}}
+						<tr>
+                            <p>No hay servicios agregados!</p>
+                        </tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>						
+
+	</div>
+</div>
