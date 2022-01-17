@@ -20,8 +20,8 @@ router.post('/add',isLoggedIn, async (req, res) => {
 });
 
 router.get('/onhold', async (req, res) => {
-	const customer = await pool.query("select * from service");
-	res.render('links/onhold', { customer });
+	const service = await pool.query("select * from service");
+	res.render('links/onhold', { service });
 })
 
 router.get('/', isLoggedIn, async (req, res) => {
@@ -31,8 +31,8 @@ router.get('/', isLoggedIn, async (req, res) => {
 });
 
 router.get('/requestService', async(req, res) => {
-	const service = await pool.query("select * from service");
-	res.render('links/requestService', { service });
+	const customer = await pool.query("select * from customer");
+	res.render('links/requestService', { customer });
 })
 
 router.post('/requestService', async (req, res) => {
@@ -44,7 +44,7 @@ router.post('/requestService', async (req, res) => {
 	};
 	await pool.query('INSERT INTO customer set ?', [newService]);
 	req.flash('success','Request saved successfully');
-	res.redirect('/links/onhold')
+	res.redirect('/links/requestService')
 })
 
 
@@ -52,7 +52,7 @@ router.get('/delete/:id', isLoggedIn,  async(req, res) => {
 	const { id } = req.params;
 	await pool.query('DELETE FROM customer WHERE ID = ?', [id]);
 	req.flash('success', 'Cliente removido exitosamente!');
-	res.redirect('/links/onhold');
+	res.redirect('/links/requestService');
 });
 
 router.get('/deletes/:id', isLoggedIn,  async(req, res) => {
