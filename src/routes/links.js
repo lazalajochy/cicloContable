@@ -20,7 +20,7 @@ router.post('/add',isLoggedIn, async (req, res) => {
 });
 
 router.get('/onhold', async (req, res) => {
-	const customer = await pool.query("select * from customer");
+	const customer = await pool.query("select * from service");
 	res.render('links/onhold', { customer });
 })
 

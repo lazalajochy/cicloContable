@@ -1,34 +1,27 @@
-<div class="container pt-4">
+<div class="container pt-5">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h2 class="title">On Hold</h2>
+                    <h2 class="title">Servicios disponibles</h2>
                 </div>
             </div>
-            {{#if user}}
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Turno</th>
-                            <th>Nombre</th>
+                            <th>#</th>
                             <th>Servicio</th>
+                            <th>Precio</th>
                             <th>Descripcion</th>
-                            <th>Desde</th>
-                            <th>Accion</th>
                         </tr>
                     </thead>
                     <tbody>
                         {{#each customer}}
                             <tr>
                                 <td>{{id}}</td>
-                                <td>{{ customerName}}</td>
-                                <td>{{serviceName}}</td>
+                                <td>{{ serviceName}}</td>
+                                <td>{{price}}</td>
                                 <td>{{description}}</td>
-                                <td>{{timeago created_at}}</td>
-                                <td>
-                                    <a href="/links/delete/{{id}}" class="btn btn-danger">Eliminar</a>
-                                </td>
                             </tr>
                         {{else}}
                             <tr>
@@ -37,51 +30,7 @@
                         {{/each}}
                     </tbody>
                 </table>
-            {{else}}
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Turno</th>
-                            <th>Nombre</th>
-                            <th>Servicio</th>
-                            <th>Descripcion</th>
-                            <th>Desde</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{#each customer}}
-                            <tr>
-                                <td>{{id}}</td>
-                                <td>{{customerName}}</td>
-                                <td>{{serviceName}}</td>
-                                <td>{{description}}</td>
-                                <td>{{timeago created_at}}</td>
-                            </tr>
-                        {{else}}
-                            <tr>
-                                <p>No hay clientes en espera!</p>
-                            </tr>
-                        {{/each}}
-                    </tbody>
-                </table>
-            {{/if}}
-        </div>
-        <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h2 class="panel-title">Tiempo en espera</h2>
-                </div>
-            </div>
-            {{#if user}}
-            <div class="container" id="container"> 
-                <button id="button" class="btn btn-info">Empezar</button>
-                <input type="text" placeholder="tiempo estimado" id="time">
-                <p id="timeLess">0</p> 
-            </div>
-            {{else}}
-                <p id="timeLes">0</p>
-
-            {{/if}}
+           
 
         </div>
     </div>
