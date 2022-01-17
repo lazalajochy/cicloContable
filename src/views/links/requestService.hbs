@@ -1,64 +1,103 @@
-<div class="container pt-4">
-	<div class="row">
-	<div class="col-md-4">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h2 class="panel-title">Solicitar Servicio</h2>
-			</div>
-		</div>
-
-		<div class="panel-body">
-			<form action="/links/requestService" method="POST" class="form-horizontal">
-				<div class="form-group">
-					<input type="text" class="form-control" name="customerName" placeholder="User name" autofocus required>
-				</div>
-				<div class="form-group">
-					<select class="form-control" name="serviceName">
-					 <option value="corte de pelo">Corte de pelo</option>
+<div class="container pt-5">
+   <div class="row">
+      <div class="col-md-4">
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <h2 class="panel-title">Solicitar Servicio</h2>
+            </div>
+         </div>
+         <div class="panel-body">
+            <form action="/links/requestService" method="POST" class="form-horizontal">
+               <div class="form-group">
+                  <input type="text" class="form-control" name="customerName" placeholder="User name" autofocus required>
+               </div>
+               <div class="form-group">
+                  <select class="form-control" name="serviceName">
+                     <option value="corte de pelo">Corte de pelo</option>
                      <option value="corte de pelo y barba">Corte de pelo y barba</option>
                      <option value="blow out">Blow out</option>
                      <option value="blow out con barba">Blow out con barba</option>
                      <option value="cerquillo">Cerqueillo</option>
                      <option value="cejas">Cejas</option>
-				</select>
-				</div>
-				<div class="form-group">
-					<textarea name="description" rows="2" class="form-control" required placeholder="Description"></textarea>
-				</div>
-				<div class="form-group">
-					<button class="btn btn-success btn-block" id="button">Save</button>
-				</div>
-			</form>
-		</div>
-	</div>
-	<div class="col-md-8">
-		<div class="container">
-			<div class="panel panel-default">
-			<div class="panel-heading">
-				<h2 class="panel-title">Servicios Disponibles</h2>
-			</div>
-		</div>
-			 <table class="table table-striped">
+                  </select>
+               </div>
+               <div class="form-group">
+                  <textarea name="description" rows="2" class="form-control" required placeholder="Description"></textarea>
+               </div>
+               <div class="form-group">
+                  <button class="btn btn-success btn-block" id="button">Save</button>
+               </div>
+            </form>
+         </div>
+      </div>
+      <div class="col-md-8">
+         <div class="container">
+            <div class="panel panel-default">
+               <div class="panel-heading">
+                  <h2 class="panel-title">Servicios Disponibles</h2>
+               </div>
+            </div>
+			{{#if user}}
+				 <table class="table table-striped">
 				 <thead>
 					 <tr>
-						 <th>Servicio</th>
-						 <th>Precio</th>
+						 <th>Turno</th>
+						 <th>Nombre</th>
+                   <th>Servicio</th>
 						 <th>Descripcion</th>
 					 </tr>
 				 </thead>
 				 <tbody>
-					 {{#each service}}
+					 {{#each customer }}
 					 	<tr>
-							 <td>{{ serviceName }}</td>
-							 <td>{{ price }}</td>
+							 <td>{{id}}</td>
+							 <td>{{ customerName }}</td>
+                      <td>{{serviceName}}</td>
 							 <td>{{ description }}</td>
+							 <td>
+								<a href="/links/deletes/{{id}}" class="btn btn-danger" >Eliminar</a>
+							</td>
 						 </tr>
+						 {{else}}
+                            <tr>
+                                <p>No hay clientes en espera!</p>                              
+                            </tr>
 					 {{/each}}
 				 </tbody>
 			 </table>
-		</div>
-	</div>
- </div>
+
+			{{else}}
+
+			 <table class="table table-striped">
+				 <thead>
+					 <tr>
+						 <th>Turno</th>
+                   <th>Nombre</th>
+						 <th>Servicio</th>
+						 <th>Descripcion</th>
+					 </tr>
+				 </thead>
+				 <tbody>
+					 {{#each customer}}
+					 	<tr>
+							 <td>{{id}}</td>
+							 <td>{{ customerName }}</td>
+                      <td>{{serviceName}}</td>
+							 <td>{{ description }}</td>
+						 </tr>
+						 {{else}}
+                            <tr>
+                                <p>No hay clientes en espera!</p>                              
+                            </tr>
+					 {{/each}}
+				 </tbody>
+			 </table>
+
+
+			{{/if}}
+         </div>
+      </div>
+   </div>
 </div>
 
 
