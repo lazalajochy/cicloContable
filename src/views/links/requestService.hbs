@@ -26,7 +26,7 @@
 					<textarea name="description" rows="2" class="form-control" required placeholder="Description"></textarea>
 				</div>
 				<div class="form-group">
-					<button class="btn btn-success btn-block">Save</button>
+					<button class="btn btn-success btn-block" id="button">Save</button>
 				</div>
 			</form>
 		</div>
@@ -60,3 +60,28 @@
 	</div>
  </div>
 </div>
+
+
+<script>
+   function timeOff(){
+      var day = new Date();
+      var button = document.getElementById("button");
+
+      if(day.getDay() == 2){
+         button.disabled = true;
+      }else if(day.getDay !== 2 && day.getHours() == 7){
+         button.disabled = false;
+      }else if(day.getDay !== 2 && day.getHours() >= 11 && day.getHours < 13){
+         button.disabled = true;
+      }else if(day.getDay !== 2 && day.getHours() >= 13 && day.getHours() < 19){
+         button.disabled == false;
+      }else if(day.getDay !== 2 && day.getHours() >= 19){
+         button.disabled = true;
+      }
+
+      console.log(day.getHours())
+
+   }
+
+   timeOff();
+</script>
