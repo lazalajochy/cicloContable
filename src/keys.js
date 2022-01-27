@@ -1,4 +1,4 @@
-module.exports = {
+/*module.exports = {
 	database:{
 		host: 'kutnpvrhom7lki7u.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
 		user:  'uhf0k4l8qgfijc9c', 
@@ -6,8 +6,8 @@ module.exports = {
 		database: 'x4reh0xknq7baw7h'
 	}
 };
+*/
 
-/*
 module.exports = {
 	database:{
 		host: 'localhost',
@@ -15,4 +15,4 @@ module.exports = {
 		password: '12345678',
 		database: 'esayline'
 	}
-};*/
+};

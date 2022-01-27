@@ -106,10 +106,10 @@
    function timeOff(){
       var day = new Date();
       var button = document.getElementById("button");
-
+      
       if(day.getDay() == 2){
          button.disabled = true;
-      }else if(day.getDay !== 2 && day.getHours() >= 7 && day.getHours() < 11){
+      }else if(day.getDay !== 2 && day.getHours() >= 7 && day.getHours() <= 11){
          button.disabled = false;
       }else if(day.getDay !== 2 && day.getHours() >= 11 && day.getHours < 13){
          button.disabled = true;
@@ -121,7 +121,6 @@
 		  button.disabled  = true
 	  }
 
-      console.log(day.getHours())
 
    }
 
