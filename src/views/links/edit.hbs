@@ -1,26 +1,83 @@
-<div class="container p-4" >
-	<div class="row">
-		<div class="col-md-4 mx-auto">
-			<div class="card">
-				<div class="card-body">
-					<form action="/links/edit/{{links.id}}" method="POST">
-						<div class="form-group">
-						<input type="text" value="{{links.serviceName}}" class="form-control" name="serviceName" placeholder="service name" autofocus required>
-						</div>
-						<div class="form-group">
-						<input type="text" value="{{links.price}}" class="form-control" name="price" placeholder="price" required>
-						</div>
-						<div class="form-group">
-						<textarea name="description"  rows="2" class="form-control" required placeholder="Description">{{links.description}}</textarea>
-						</div>
-						<div class="form-group">
-						<button class="btn btn-success btn-block">
-						Save
-						</button>
-						</div>
-					</form>
+<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<div class="container pt-4">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2 class="title">Aportaciones de los Detalles o Socios</h2>
 				</div>
 			</div>
-		</div>
-	</div>
+			<input type="text" class="form-control my-2 col-md-3 light-table-filter" data-table="order-table" placeholder="Buscar socio o detalle" name="search" id="search">
+			<table class="table table-striped" id="table">
+				<thead>
+					<tr>
+						<th>Detalle</th>
+						<th>Sub-Auxiliar</th>
+						<th>Auxiliar</th>
+						<th>Debito</th>
+						<th>Credito</th>
+						<th>Fecha</th>
+						<th>Descripcion</th>
+						<th>Balance</th> 
+						<th>Accion</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each links}}
+						<tr>
+							<td>{{socio}}</td>
+							<td>{{sub_auxiliar}}</td>
+							<td>{{auxiliar}}</td>
+							<td>{{debito}}</td>
+							<td>{{credito}}</td>
+							<td>{{fechas}}</td>
+							<td>{{descripcion}}</td>
+							<td>{{balance}}</td>
+							<td>
+								<a href="/links/deleteDetails/{{id}}" class="btn btn-danger" >Eliminar</a>
+								<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"  >Opciones</button>
+								<div class="dropdown-menu">
+									<a href="/links/operacion/{{idCuentas}}" target="_blank" class="dropdown-item">Mayores</a>
+									<a href="/links/balanza/{{idCuentas}}" target="_blank"  class="dropdown-item">Balanza</a>
+									<a href="/links/asiento/{{idCuentas}}" target="_blank" class="dropdown-item">Asiento</a>
+									<a href="/links/balance/{{idCuentas}}" target="_blank" class="dropdown-item" >Balance</a>
+								</div>
+								
+							</td>
+						</tr>
+					{{else}}
+						<tr>
+                            <p>No hay aportaciones de socios registradas!</p>
+                        </tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>						
 </div>
+
+
+<script>
+	 $(document).ready(function(){  
+           $('#search').keyup(function(){  
+                search_table($(this).val());  
+           });  
+           function search_table(value){  
+                $('#table tr').each(function(){  
+                     var found = 'false';  
+                     $(this).each(function(){  
+                          if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
+                          {  
+                               found = 'true';  
+                          }  
+                     });  
+                     if(found == 'true')  
+                     {  
+                          $(this).show();  
+                     }  
+                     else  
+                     {  
+                          $(this).hide();  
+                     }  
+                });  
+           }  
+      });  
+</script>

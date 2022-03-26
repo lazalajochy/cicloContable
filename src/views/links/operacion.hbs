@@ -1,0 +1,62 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <h2>Operaciones Mayores</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/links/operacion" method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="detalleNombre" required placeholder="nombre transacion">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="nombreUno" placeholder="nombre transacion" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="transacionUno" required placeholder="tipo de transacion">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="transacionDos" required placeholder="tipo de transacion">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="cantidadUno" required id="cantidadUno" placeholder="cantidad">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="cantidadDos" required placeholder="cantidad" id="cantidadDos">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="result" required readonly id="result">
+                        </div>
+                        <div class="form-group">
+                            <select  id="option" class="form-control">
+                                <option value="sumar">Sumar</option>
+                                <option value="restar">Restar</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" value="{{idCuentas}}" style="display: none;" name="idCuentas">
+                        </div>
+                        <div class="form-group">
+						<button class="btn btn-success btn-block">
+						Save
+						</button>
+						</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    setInterval(function(){
+        var option = document.getElementById("option").value;
+        var cantidadUno = parseFloat(document.getElementById("cantidadUno").value);
+        var cantidadDos = parseFloat(document.getElementById("cantidadDos").value);
+        if(option == "sumar"){
+            document.getElementById("result").value = cantidadUno + cantidadDos;
+        }else if(option == "restar"){
+            document.getElementById("result").value = cantidadUno - cantidadDos;
+        }
+
+    }, 1000)
+</script>

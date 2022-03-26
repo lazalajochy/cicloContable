@@ -1,0 +1,75 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <h2>Balance General</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/links/balance" method="post">
+                        <div class="form-group">
+                            <input type="text" name="nombreUno" class="form-control" required placeholder="tipo transacion">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="cantidadUno" class="form-control" required placeholder="cantidad" id="cantidadUno">
+                        </div>
+                         <div class="form-group">
+                            <input type="text" name="nombreDos" class="form-control" required placeholder="tipo transacion">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="cantidadDos" class="form-control" required placeholder="cantidad" id="cantidadDos">
+                        </div>
+                         <div class="form-group">
+                            <input type="text" name="nombreTres" class="form-control" required placeholder="tipo transacion">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="cantidadTres" class="form-control" required placeholder="cantidad"  id="cantidadTres">
+                        </div>
+                         <div class="form-group">
+                            <input type="text" name="nombreCuatro" class="form-control" required placeholder="tipo transacion">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="cantidadCuatro" class="form-control" required placeholder="cantidad"  id="cantidadCuatro">
+                        </div>
+                         <div class="form-group">
+                            <input type="text" name="nombreCinco" class="form-control" required placeholder="tipo transacion">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="cantidadCinco" class="form-control" required placeholder="cantidad"  id="cantidadCinco">
+                        </div>
+                         <div class="form-group">
+                            <input type="text" name="nombreSeis" class="form-control" required placeholder="tipo transacion">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="cantidadSeis" class="form-control" required placeholder="cantidad"  id="cantidadSeis">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="result" class="form-control" readonly id="result">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" value="{{idCuentas}}" name="idCuentas" style="display: none;">
+                        </div>
+                         <div class="form-group">
+                            <button class="btn btn-success btn-block">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    setInterval(function(){
+        var cantidadUno = parseFloat(document.getElementById("cantidadUno").value);
+        var cantidadDos = parseFloat(document.getElementById("cantidadDos").value);
+        var cantidadTres = parseFloat(document.getElementById("cantidadTres").value);
+        var cantidadCuatro = parseFloat(document.getElementById("cantidadCuatro").value);
+        var cantidadCinco = parseFloat(document.getElementById("cantidadCinco").value);
+        var cantidadSeis = parseFloat(document.getElementById("cantidadSeis").value);
+        var result = cantidadUno + cantidadDos + cantidadTres + cantidadCuatro + cantidadCinco + cantidadSeis;
+
+        parseFloat(document.getElementById("result").value = result);
+        console.log(result)
+
+    },1000)
+</script>

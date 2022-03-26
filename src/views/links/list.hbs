@@ -1,29 +1,41 @@
+<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <div class="container pt-4">
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-8 mx-auto">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h2 class="title">Lista de servicios agregados</h2>
+					<h2 class="title">Lista de registros</h2>
 				</div>
 			</div>
-			<table class="table table-striped">
+			<input type="text" class="form-control my-2 col-md-3 light-table-filter" data-table="order-table" placeholder="Buscar cuenta" name="search" id="search">
+			<table class="table table-striped" id="table">
 				<thead>
 					<tr>
-						<th>Servicio</th>
-						<th>Precio</th>
-						<th>Descripcion</th>
-						<th>Accion</th>
+						<th>#</th>
+						<th>Registro</th>
+						<th>Editar</th>
+						<th>Eliminar</th>
+						
 					</tr>
 				</thead>
 				<tbody>
 					{{#each links}}
 						<tr>
-							<td>{{serviceName}}</td>
-							<td>{{price}}</td>
-							<td>{{description}}</td>
+							<td>{{id}}</td>
+							<td>{{nombre}}</td>
 							<td>
-								<a href="/links/edit/{{id}}" class="btn btn-primary">Editar</a>
-								<a href="/links/deletes/{{id}}" class="btn btn-danger" >Eliminar</a>
+								<a href="/links/agregarSocio/{{id}}" class="btn btn-primary">Editar</a>
+							</td>
+							<td>
+								<a href="/links/deleteCuenta/{{id}}" class="btn btn-danger" >Eliminar</a>
+								<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"  >Opciones</button>
+								<div class="dropdown-menu">
+									<a href="/links/addDetails/{{id}}" class="dropdown-item" >Agregar Entrada</a>
+									<a href="/links/listMayores/{{id}}"  class="dropdown-item">Mayores</a>
+									<a href="/links/listBalanza/{{id}}" class="dropdown-item">Balanza</a>
+									<a href="/links/listAsiento/{{id}}" class="dropdown-item">Asiento</a>
+									<a href="/links/listBalance/{{id}}" class="dropdown-item" >Balance</a>
+								</div>
 							</td>
 						</tr>
 					{{else}}
@@ -37,3 +49,30 @@
 
 	</div>
 </div>
+
+<script>
+	 $(document).ready(function(){  
+           $('#search').keyup(function(){  
+                search_table($(this).val());  
+           });  
+           function search_table(value){  
+                $('#table tr').each(function(){  
+                     var found = 'false';  
+                     $(this).each(function(){  
+                          if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
+                          {  
+                               found = 'true';  
+                          }  
+                     });  
+                     if(found == 'true')  
+                     {  
+                          $(this).show();  
+                     }  
+                     else  
+                     {  
+                          $(this).hide();  
+                     }  
+                });  
+           }  
+      });  
+</script>

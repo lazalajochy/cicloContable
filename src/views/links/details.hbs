@@ -1,0 +1,66 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <h2>Agregar detalles relacionados a la cuenta</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/links/addDetails" method="POST">
+                        <div class="form-group">
+                            <input type="text" class="form-control"  placeholder="detalle o socio" name="socio" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="sub-auxiliar" name="sub_auxiliar" id="sub_auxiliar" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="auxiliar" name="auxiliar" id="auxiliar" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="debito" name="debito" id="debito" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="credito" name="credito" id="credito" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="balance"  id="transactionBalance">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="balance" name="balance" id="balance" style="display: none;" >
+                        </div>
+                        <div class="form-group">
+                            <input type="date" class="form-control" required name="fechas"> 
+                        </div>
+                        <div class="form-group">
+                            <textarea name="descripcion" row="2" class="form-control" placeholder="descripcion"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" value="{{id}}" style="display:none" name="idCuentas">
+                        </div>
+                        <input type="text" value="{{balance.balance}}" id="currentBalance"  style="display: none">
+                        <div class="form-group">
+                            <button class="btn btn-success btn-block">Save</button>
+                        </div>
+                    </form>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    setInterval(function(){
+        var sub_auxiliar = parseFloat(document.getElementById("sub_auxiliar").value);
+        var auxiliar = parseFloat(document.getElementById("auxiliar").value);
+        var debito = parseFloat(document.getElementById("debito").value);
+        var credito = parseFloat(document.getElementById("credito").value); 
+        var currentBalance = parseFloat(document.querySelector('#currentBalance').value) 
+        var newBalance = parseFloat(document.getElementById("transactionBalance").value = debito - credito)
+        if(document.querySelector("#currentBalance").value == ""){
+            parseFloat(document.querySelector("#balance").value = debito - credito)
+        }else{
+            parseFloat(document.querySelector("#balance").value = currentBalance + (debito - credito))
+
+        }
+        
+        
+    },1000)
+</script> 

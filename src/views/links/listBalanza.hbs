@@ -1,0 +1,74 @@
+<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<div class="container pt-4">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2>Lista de Balanza</h2>
+                </div>
+            </div>   
+            <input type="text" class="form-control my-2 col-md-3 light-table-filter" data-table="order-table" placeholder="Buscar socio o detalle" name="search" id="search">
+
+            <table class="table table-striped" id="table">
+                <thead>
+                    <tr>
+                        <th>Detalle/socio</th>
+                        <th>Detalle/socio</th>
+                        <th>Transacion</th>
+                        <th>Transacion</th>
+                        <th>Cantidad</th>
+                        <th>Cantidad</th>
+                        <th>Balance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each data}}
+                        <tr>
+                            <td>{{detalleNombre}}</td>
+                            <td>{{nombreUno}}</td>
+                            <td>{{transacionUno}}</td>
+                            <td>{{transacionDos}}</td>
+                            <td>{{cantidadUno}}</td>
+                            <td>{{cantidadDos}}</td>
+                            <td>{{result}}</td>
+                        </tr>
+
+
+                    {{else}}
+                        <tr>
+                            <p>No hay datos registrados!</p>
+                        </tr>
+
+                    {{/each}}
+                </tbody>
+            </table>         
+        </div>
+    </div>
+</div>
+
+<script>
+	 $(document).ready(function(){  
+           $('#search').keyup(function(){  
+                search_table($(this).val());  
+           });  
+           function search_table(value){  
+                $('#table tr').each(function(){  
+                     var found = 'false';  
+                     $(this).each(function(){  
+                          if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
+                          {  
+                               found = 'true';  
+                          }  
+                     });  
+                     if(found == 'true')  
+                     {  
+                          $(this).show();  
+                     }  
+                     else  
+                     {  
+                          $(this).hide();  
+                     }  
+                });  
+           }  
+      });  
+</script>

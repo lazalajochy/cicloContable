@@ -1,0 +1,54 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <h2>Asiento de Ajuste</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/links/asiento" method="post">
+                        <div class="form-group">
+                            <input type="text"  class="form-control" name="nombre" placeholder="tipo transacion" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="cantidad" id="cantidad" placeholder="monto" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="porciento" placeholder="por ciento" required name="porciento">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="result" name="result" readonly>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="meses" id="meses" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="totalMeses" id="totalMeses" readonly>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" class="form-control" name="fecha">
+                        </div>
+                         <div class="form-group">
+                            <input type="text" value="{{idCuentas}}" style="display: none;" name="idCuentas">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-success btn-block">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    setInterval(function(){
+        var monto = parseFloat(document.getElementById("cantidad").value);
+        var porciento = parseInt(document.getElementById("porciento").value)
+        var result = (monto * porciento) / 100;
+        var porcientoResult =  document.getElementById("result").value = result;
+        var meses = parseInt(document.getElementById('meses').value);
+        var mesesTotal = porcientoResult / meses;
+        document.getElementById("totalMeses").value = mesesTotal.toFixed(3);
+
+    },1000)
+</script>
