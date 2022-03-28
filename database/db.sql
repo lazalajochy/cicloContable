@@ -39,21 +39,19 @@ on delete cascade
 on update cascade;
 
 
-insert into cuentas(nombre) values('juan')
-
-insert into socios(socio,sub_auxiliar,auxiliar,debito,fechas,idCuentas,credito) values('lola',17500,2500,3000,'2022-12-12', 2,12500)
-
-alter table socios add column credito varchar(250);
 
 create table mayores(
   id int(11) AUTO_INCREMENT,
   PRIMARY key(id),
   detalleNombre varchar(250),
   nombreUno varchar(250),
+  transacionUno float,
+  transacionDos float,
   cantidadUno float,
   cantidadDos float,
   idCuentas int references cuentas(id),
   result float
+
 );
 ALTER table mayores add foreign key(idCuentas) references cuentas(id) 
 on delete cascade
@@ -83,7 +81,10 @@ create table asiento(
   result float,
   meses int,
   totalMeses float,
-  idCuentas int references cuentas(id)
+  idCuentas int references cuentas(id),
+  porciento int,
+  cantidad float,
+  fecha Date
 );
 
 ALTER table asiento add foreign key(idCuentas) references cuentas(id) 
